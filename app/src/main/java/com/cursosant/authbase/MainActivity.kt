@@ -9,20 +9,6 @@ import androidx.transition.TransitionManager
 import com.cursosant.authbase.databinding.ActivityMainBinding
 import com.google.android.material.transition.MaterialFadeThrough
 
-/****
- * Project: Auth base
- * From: com.cursosant.authbase
- * Created by Alain Nicolás Tello on 22/05/23 at 11:22
- * All rights reserved 2023.
- *
- * All my Udemy Courses:
- * https://www.udemy.com/user/alain-nicolas-tello/
- * And Frogames formación:
- * https://cursos.frogamesformacion.com/pages/instructor-alain-nicolas
- *
- * Coupons on my Website:
- * www.alainnicolastello.com
- ***/
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
