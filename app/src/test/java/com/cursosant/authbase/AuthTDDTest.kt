@@ -2,6 +2,7 @@ package com.cursosant.authbase
 
 import junit.framework.TestCase.assertEquals
 import org.junit.Assert.assertThrows
+import org.junit.Ignore
 import org.junit.Test
 
 class AuthTDDTest {
@@ -83,6 +84,7 @@ class AuthTDDTest {
 
     }
 
+    @Ignore("We need to define the length with the client...")
     @Test
     fun login_completeForm_errorLengthPassword_returnsFailEvent(){
         val isAuthenticated = userAuthenticationTDD("luigi@gmail.com", "123")
