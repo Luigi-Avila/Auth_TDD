@@ -11,17 +11,19 @@ fun userAuthenticationTDD(email: String?, password: String?): AuthEvents {
     if (email == null && password == null) throw AuthException(AuthEvents.NULL_FORM)
     if (email == null) throw AuthException(AuthEvents.NULL_EMAIL)
     if (password == null) throw AuthException(AuthEvents.NULL_PASSWORD)
-    if (email.isBlank() && password.isBlank()) return AuthEvents.FORM_EMPTY
-    if (email.isBlank()) return AuthEvents.EMAIL_EMPTY
-    if (password.isBlank()) return AuthEvents.PASSWORD_EMPTY
 
-    val passwordNumber = password.toIntOrNull()
-
-    return if (!isEmailValid(email) && passwordNumber == null) AuthEvents.INVALID_USER
-    else if (!isEmailValid(email)) return AuthEvents.INVALID_EMAIL
-    else if (passwordNumber == null) return AuthEvents.INVALID_PASSWORD
+    return if (email.isBlank() && password.isBlank()) AuthEvents.FORM_EMPTY
+    else if (email.isBlank()) AuthEvents.EMAIL_EMPTY
+    else if(password.isBlank()) AuthEvents.PASSWORD_EMPTY
+    else if (password.length < 4) AuthEvents.SHORT_PASSWORD
     else {
-        return if (email == "luigi@gmail.com" && password == "1234") AuthEvents.USER_EXIST else AuthEvents.NOT_USER_EXIST
+        val passwordNumber = password.toIntOrNull()
+        return if (!isEmailValid(email) && passwordNumber == null) AuthEvents.INVALID_USER
+        else if (!isEmailValid(email)) AuthEvents.INVALID_EMAIL
+        else if (passwordNumber == null) AuthEvents.INVALID_PASSWORD
+        else {
+            return if (email == "luigi@gmail.com" && password == "1234") AuthEvents.USER_EXIST else AuthEvents.NOT_USER_EXIST
+        }
     }
 }
 

@@ -32,7 +32,7 @@ class AuthTDDTest {
 
     @Test
     fun login_emptyForm_returnsFailEvent(){
-        val isAuthenticated = userAuthenticationTDD("", "")
+        val isAuthenticated = userAuthenticationTDD(String(), String())
         assertEquals(AuthEvents.FORM_EMPTY, isAuthenticated)
     }
 
@@ -83,7 +83,11 @@ class AuthTDDTest {
 
     }
 
+    @Test
+    fun login_completeForm_errorLengthPassword_returnsFailEvent(){
+        val isAuthenticated = userAuthenticationTDD("luigi@gmail.com", "123")
+        assertEquals(AuthEvents.SHORT_PASSWORD, isAuthenticated)
+    }
 
-//    login_completeForm_errorLengthPassword_returnsFailEvent
 
 }
