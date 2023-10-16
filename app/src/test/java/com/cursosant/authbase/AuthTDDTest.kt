@@ -1,6 +1,7 @@
 package com.cursosant.authbase
 
 import junit.framework.TestCase.assertEquals
+import org.junit.Assert.assertThrows
 import org.junit.Test
 
 class AuthTDDTest {
@@ -59,9 +60,15 @@ class AuthTDDTest {
         assertEquals(AuthEvents.NULL_EMAIL, isAuthenticated)
     }
 
+    @Test
+    fun login_nullPassword_returnsException(){
+        assertThrows(AuthException::class.java){
+            userAuthenticationTDD("luigi@gmail.com", null)
+        }
+    }
 
 //
-//    login_nullPassword_returnsException
+//
 //    login_nullForm_returnsException
 //    login_completeForm_errorLengthPassword_returnsFailEvent
 
