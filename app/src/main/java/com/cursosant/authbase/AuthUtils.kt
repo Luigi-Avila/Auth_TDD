@@ -8,7 +8,8 @@ fun userAuthentication(email: String, password: String): Boolean {
 }
 
 fun userAuthenticationTDD(email: String?, password: String?): AuthEvents {
-    if (email!!.isBlank() && password!!.isBlank()) return AuthEvents.FORM_EMPTY
+    if (email == null) throw AuthException(AuthEvents.NULL_EMAIL)
+    if (email.isBlank() && password!!.isBlank()) return AuthEvents.FORM_EMPTY
     if (email.isBlank()) return AuthEvents.EMAIL_EMPTY
     if (password!!.isBlank()) return AuthEvents.PASSWORD_EMPTY
 

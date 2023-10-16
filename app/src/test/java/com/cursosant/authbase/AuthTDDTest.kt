@@ -2,7 +2,6 @@ package com.cursosant.authbase
 
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
-import java.lang.NullPointerException
 
 class AuthTDDTest {
 
@@ -54,7 +53,7 @@ class AuthTDDTest {
         assertEquals(AuthEvents.INVALID_USER, isAuthenticated)
     }
 
-    @Test(expected = NullPointerException::class)
+    @Test(expected = AuthException::class)
     fun login_nullEmail_returnsException(){
         val isAuthenticated = userAuthenticationTDD(null,"123e")
         assertEquals(AuthEvents.NULL_EMAIL, isAuthenticated)
