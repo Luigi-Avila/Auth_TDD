@@ -54,12 +54,14 @@ class AuthTDDTest {
         assertEquals(AuthEvents.INVALID_USER, isAuthenticated)
     }
 
+    // 3 form to validate exceptions (1)
     @Test(expected = AuthException::class)
     fun login_nullEmail_returnsException(){
         val isAuthenticated = userAuthenticationTDD(null,"123e")
         assertEquals(AuthEvents.NULL_EMAIL, isAuthenticated)
     }
 
+    // (2)
     @Test
     fun login_nullPassword_returnsException(){
         assertThrows(AuthException::class.java){
@@ -67,9 +69,21 @@ class AuthTDDTest {
         }
     }
 
-//
-//
-//    login_nullForm_returnsException
+    //(3)
+    @Test
+    fun login_nullForm_returnsException(){
+        try {
+            val isAuthenticated = userAuthenticationTDD(null, null)
+            assertEquals(AuthEvents.NULL_FORM, isAuthenticated)
+        } catch (e: Exception){
+            (e as? AuthException)?.let {
+                assertEquals(AuthEvents.NULL_FORM, it.authEvent)
+            }
+        }
+
+    }
+
+
 //    login_completeForm_errorLengthPassword_returnsFailEvent
 
 }

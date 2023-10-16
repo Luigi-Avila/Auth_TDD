@@ -1,6 +1,6 @@
 package com.cursosant.authbase
 
 class AuthException(
-    private val authEvents: AuthEvents,
+    val authEvent: AuthEvents,
     message: String? = null
 ) : Exception(message)

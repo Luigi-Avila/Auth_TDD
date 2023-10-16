@@ -10,5 +10,6 @@ enum class AuthEvents {
     INVALID_PASSWORD,
     INVALID_USER,
     NULL_EMAIL,
-    NULL_PASSWORD
+    NULL_PASSWORD,
+    NULL_FORM
 }
