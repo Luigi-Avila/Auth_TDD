@@ -3,6 +3,9 @@ package com.cursosant.authbase
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.both
 import org.hamcrest.Matchers.containsString
+import org.hamcrest.Matchers.endsWith
+import org.hamcrest.Matchers.everyItem
+import org.hamcrest.Matchers.hasItem
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.not
 import org.junit.Assert
@@ -104,5 +107,22 @@ class AuthHamcrestTest {
         val email = "luigi@gmail.com"
         val password = "1234"
         assertThat(email, not(`is`(password)))
+    }
+
+    @Test
+    fun `check exist new email and returns a string`(){
+        val oldEmail = "luigi@gmail.com"
+        val newEmail = "l.avila@gmail.com"
+        val emails = arrayListOf(oldEmail, newEmail)
+        assertThat(emails, hasItem(newEmail))
+    }
+
+    @Test
+    fun `check domain in email array returns a string`(){
+        val oldEmail = "luigi@gmail.com"
+        val newEmail = "l.avila@gmail.com"
+        val nextEmail = "l.luigi@gmail.com"
+        val emails = arrayListOf(oldEmail, newEmail, nextEmail)
+        assertThat(emails, everyItem(endsWith("gmail.com")))
     }
 }
