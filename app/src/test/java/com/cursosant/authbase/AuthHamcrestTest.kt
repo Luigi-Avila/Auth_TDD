@@ -1,7 +1,10 @@
 package com.cursosant.authbase
 
 import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.both
+import org.hamcrest.Matchers.containsString
 import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.not
 import org.junit.Assert
 import org.junit.Ignore
 import org.junit.Test
@@ -89,5 +92,17 @@ class AuthHamcrestTest {
     fun `login user with complete form but error length password returns fail event`() {
         val result = userAuthenticationTDD("luigi@gmail.com", "123")
         assertThat(AuthEvents.SHORT_PASSWORD, `is`(result))
+    }
+
+    @Test
+    fun `check name different users match`(){
+        assertThat("Luigi", both(containsString("u")).and(containsString("i")))
+    }
+
+    @Test
+    fun `check data with email and password don't match`(){
+        val email = "luigi@gmail.com"
+        val password = "1234"
+        assertThat(email, not(`is`(password)))
     }
 }
